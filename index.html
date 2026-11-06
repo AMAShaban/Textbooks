@@ -343,7 +343,7 @@
   </div>
 </div>
 
-<script src="\src\pdf.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="src/pdf.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 (function () {
   'use strict';
@@ -375,7 +375,7 @@
       subtitle: "Grade 10 Mathematics",
       note: "Full course textbook.",
       color: "#2f6d5e",
-      url: "\Books\Mathematics10MHC.pdf"          // ← PASTE YOUR MATHEMATICS 10 PDF LINK HERE
+      url: "Books/Mathematics10MHC.pdf"          // ← PASTE YOUR MATHEMATICS 10 PDF LINK HERE
     },
     {
       id: "social-10",
@@ -383,7 +383,7 @@
       subtitle: "Exploring Globalization",
       note: "Full course textbook.",
       color: "#7d3b4b",
-      url: "\Books\ExploringGlobalization.pdf"          // ← PASTE YOUR SOCIAL STUDIES 10 PDF LINK HERE
+      url: "Books/ExploringGlobalization.pdf"          // ← PASTE YOUR SOCIAL STUDIES 10 PDF LINK HERE
     }
   ];
 
@@ -409,7 +409,7 @@
   var LIB_OK = typeof window.pdfjsLib !== 'undefined';
   if (LIB_OK) {
     window.pdfjsLib.GlobalWorkerOptions.workerSrc =
-      '\src\pdf.worker.min.js';
+      'src/pdf.worker.min.js';
   } else {
     var warn = document.createElement('section');
     warn.className = 'lib-warn';
