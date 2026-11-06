@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f5f1e8">
+<meta name="description" content="Grade 10 textbooks — Mathematics 10 and Social Studies 10: Exploring Globalization — shared by Mohammad Shaban. Read them online, right in your browser.">
+<title>Mohammad Shaban · Grade 10 Textbooks</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='2' y='2' width='60' height='60' rx='14' fill='%238f6a32'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='26' fill='%23f5f1e8' text-anchor='middle'%3EMS%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f5f1e8;
+    --surface:#fffdf7;
+    --ink:#211d16;
+    --muted:#726a5b;
+    --faint:#a49a87;
+    --line:#e5dcc9;
+    --accent:#8f6a32;
+    --accent-deep:#6f4f21;
+    --viewer-bg:#181410;
+    --viewer-panel:#211c15;
+    --serif:"Fraunces", Georgia, "Times New Roman", serif;
+    --sans:"Inter", -apple-system, "Segoe UI", sans-serif;
+    --mono:"JetBrains Mono", ui-monospace, "SF Mono", Consolas, monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    min-height:100vh;display:flex;flex-direction:column;
+    background:
+      radial-gradient(1200px 500px at 85% -10%, rgba(143,106,50,.08), transparent 60%),
+      radial-gradient(900px 420px at -10% 20%, rgba(47,109,94,.06), transparent 55%),
+      var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  body.locked{overflow:hidden}
+  main{flex:1}
+  ::selection{background:rgba(143,106,50,.22)}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:14px clamp(18px,4vw,44px);
+    background:rgba(245,241,232,.85);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{display:flex;align-items:center;gap:12px;min-width:0}
+  .seal{
+    flex:none;width:42px;height:42px;border-radius:12px;
+    display:grid;place-items:center;
+    background:var(--accent);color:var(--paper);
+    font-family:var(--serif);font-weight:600;font-size:17px;letter-spacing:.5px;
+    box-shadow:inset 0 0 0 1.5px rgba(255,253,247,.35), 0 2px 6px rgba(111,79,33,.25);
+  }
+  .brand-name{font-family:var(--serif);font-weight:600;font-size:17px;line-height:1.2;white-space:nowrap}
+  .brand-sub{font-size:12px;color:var(--muted);line-height:1.2}
+  .grade-pill{
+    flex:none;display:inline-flex;align-items:center;gap:7px;
+    padding:7px 14px;border:1px solid var(--line);border-radius:999px;
+    background:var(--surface);font-size:12.5px;font-weight:600;color:var(--accent-deep);
+    letter-spacing:.4px;text-transform:uppercase;
+  }
+  .grade-pill i{width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block}
+
+  /* ---------- hero ---------- */
+  .hero{max-width:1060px;margin:0 auto;padding:clamp(52px,9vw,104px) clamp(18px,4vw,44px) clamp(30px,5vw,54px)}
+  .overline{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-deep);
+  }
+  .overline::before{content:"";width:34px;height:1.5px;background:var(--accent)}
+  .hero h1{
+    font-family:var(--serif);font-weight:600;
+    font-size:clamp(2.5rem,6.2vw,4.3rem);
+    line-height:1.06;letter-spacing:-.015em;
+    margin:18px 0 22px;max-width:20ch;
+  }
+  .hero h1 em{font-style:italic;color:var(--accent-deep);font-weight:500}
+  .lede{max-width:64ch;font-size:clamp(1.02rem,1.5vw,1.16rem);color:var(--muted)}
+  .lede b{color:var(--ink);font-weight:600}
+  .hero-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+  .chip{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:8px 15px;border:1px solid var(--line);border-radius:999px;
+    background:var(--surface);font-size:13.5px;font-weight:500;color:var(--muted);
+  }
+  .chip svg{color:var(--accent)}
+  .chip b{color:var(--ink);font-weight:600}
+
+  /* ---------- textbook shelf ---------- */
+  .shelf{max-width:1060px;margin:0 auto;padding:clamp(24px,4vw,44px) clamp(18px,4vw,44px) clamp(46px,7vw,80px)}
+  .shelf-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.6rem,3vw,2.1rem);letter-spacing:-.01em;margin-bottom:24px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,300px));gap:26px}
+  .book{
+    display:flex;flex-direction:column;
+    background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    cursor:pointer;text-align:left;font:inherit;padding:0;
+  }
+  .book:hover{transform:translateY(-4px);border-color:rgba(143,106,50,.45);box-shadow:0 14px 34px -14px rgba(60,44,16,.28)}
+  .book:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px}
+  .book.soon{cursor:default}
+  .book.soon:hover{transform:none;border-color:var(--line);box-shadow:none}
+  .cover{
+    position:relative;aspect-ratio:4/5;display:flex;flex-direction:column;justify-content:space-between;
+    padding:18px 16px 16px 26px;color:#fff;overflow:hidden;
+    background:linear-gradient(155deg, color-mix(in srgb, var(--c), #fff 16%), var(--c) 55%, color-mix(in srgb, var(--c), #000 26%));
+  }
+  .cover::before{ /* spine */
+    content:"";position:absolute;left:0;top:0;bottom:0;width:12px;
+    background:
+      linear-gradient(to right, rgba(0,0,0,.38), rgba(0,0,0,.12) 55%, rgba(255,255,255,.16) 88%, rgba(0,0,0,.18)),
+      var(--c);
+    filter:brightness(.72) saturate(1.1);
+  }
+  .cover::after{ /* bookplate frame */
+    content:"";position:absolute;inset:10px 10px 10px 22px;
+    border:1px solid rgba(255,255,255,.32);border-radius:6px;pointer-events:none;
+  }
+  .cover-tag{
+    align-self:flex-start;position:relative;z-index:1;
+    font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+    padding:5px 9px;border-radius:6px;background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(2px);
+  }
+  .cover-title{position:relative;z-index:1;display:block;font-family:var(--serif);font-weight:600;font-size:22px;line-height:1.15;letter-spacing:-.01em;text-shadow:0 1px 8px rgba(0,0,0,.18)}
+  .cover-sub{position:relative;z-index:1;display:block;font-size:12px;line-height:1.4;color:rgba(255,255,255,.82);margin-top:6px}
+  .cover-meta{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:rgba(255,255,255,.85);font-weight:500;letter-spacing:.06em}
+  .cover-meta .dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.65);display:inline-block;margin-right:6px}
+  .book-body{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px}
+  .book-note{font-size:13px;color:var(--muted);line-height:1.45}
+  .open-btn{
+    flex:none;display:inline-flex;align-items:center;gap:7px;
+    font-weight:600;font-size:13.5px;color:var(--accent-deep);
+    padding:9px 13px;border-radius:10px;border:1px solid var(--line);background:var(--paper);
+    transition:.18s;cursor:pointer;
+  }
+  .book:hover .open-btn{background:var(--accent);border-color:var(--accent);color:#fff}
+  .open-btn svg{transition:transform .18s}
+  .book:hover .open-btn svg{transform:translateX(3px)}
+  .soon-tag{
+    flex:none;display:inline-flex;align-items:center;
+    padding:9px 13px;border-radius:10px;border:1px dashed var(--line);
+    color:var(--faint);font-size:12.5px;font-weight:500;
+  }
+  .no-results{padding:44px 0;text-align:center;color:var(--faint);font-size:14.5px}
+
+  .lib-warn{max-width:1060px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
+  .lib-warn .warn{
+    display:flex;gap:12px;align-items:flex-start;
+    border:1px solid rgba(176,86,58,.4);background:rgba(176,86,58,.07);
+    border-radius:12px;padding:14px 16px;font-size:13.5px;color:#7c4a33;
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:22px clamp(18px,4vw,44px);
+    display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;
+    font-size:13px;color:var(--muted);
+  }
+  footer b{color:var(--ink);font-weight:600}
+
+  /* ---------- reader ---------- */
+  .viewer{position:fixed;inset:0;z-index:100;background:rgba(20,16,11,.62);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+    opacity:0;transition:opacity .2s ease;display:flex;align-items:stretch;justify-content:center}
+  .viewer.on{opacity:1}
+  .viewer[hidden]{display:none}
+  .vpanel{
+    flex:1;display:flex;flex-direction:column;min-width:0;
+    background:var(--viewer-bg);
+    transform:translateY(14px) scale(.995);transition:transform .22s ease;
+    box-shadow:0 30px 80px rgba(0,0,0,.5);
+  }
+  .viewer.on .vpanel{transform:none}
+  .vtoolbar{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    padding:12px clamp(12px,2.5vw,22px);
+    background:var(--viewer-panel);border-bottom:1px solid rgba(255,253,247,.08);
+    color:var(--paper);
+  }
+  .vtitle{min-width:0;margin-right:auto}
+  .vtitle .t{font-family:var(--serif);font-weight:600;font-size:16.5px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .vtitle .m{font-size:11.5px;color:rgba(245,241,232,.55);font-family:var(--mono)}
+  .vbtn{
+    flex:none;width:38px;height:38px;border-radius:10px;border:1px solid rgba(255,253,247,.14);
+    background:rgba(255,253,247,.05);color:var(--paper);cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;transition:.16s;
+  }
+  .vbtn:hover{background:rgba(255,253,247,.14);border-color:rgba(255,253,247,.3)}
+  .vbtn:focus-visible{outline:2px solid #c89b53;outline-offset:1px}
+  .vbtn[disabled]{opacity:.35;cursor:default}
+  .vgroup{display:flex;gap:6px;align-items:center}
+  .vsep{width:1px;height:24px;background:rgba(255,253,247,.14);margin:0 2px}
+  .vpagenum{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12.5px;color:rgba(245,241,232,.75)}
+  .vpagenum input{
+    width:52px;text-align:center;font-family:var(--mono);font-size:13px;color:var(--paper);
+    background:rgba(255,253,247,.07);border:1px solid rgba(255,253,247,.16);border-radius:8px;padding:7px 4px;outline:0;
+  }
+  .vpagenum input:focus{border-color:#c89b53}
+  .vzoom{font-family:var(--mono);font-size:12px;color:rgba(245,241,232,.75);min-width:46px;text-align:center}
+  .vprogress{height:3px;background:rgba(255,253,247,.08);position:relative;overflow:hidden}
+  .vprogress i{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,#c89b53,#8f6a32);transition:width .2s ease;opacity:0}
+  .vprogress.busy i{opacity:1}
+
+  .vpages{
+    flex:1;overflow-y:auto;overflow-x:hidden;position:relative;
+    display:flex;flex-direction:column;align-items:center;
+    padding:26px 18px 90px;scroll-behavior:smooth;
+    background:
+      radial-gradient(1000px 420px at 50% -8%, rgba(200,155,83,.07), transparent 60%),
+      var(--viewer-bg);
+  }
+  .vpages::-webkit-scrollbar{width:11px}
+  .vpages::-webkit-scrollbar-track{background:transparent}
+  .vpages::-webkit-scrollbar-thumb{background:rgba(245,241,232,.16);border-radius:8px;border:3px solid var(--viewer-bg)}
+  .vpages::-webkit-scrollbar-thumb:hover{background:rgba(245,241,232,.3)}
+
+  .vpage{
+    position:relative;flex:none;
+    width:var(--pgw,720px);max-width:100%;aspect-ratio:var(--ar,0.707);
+    margin-bottom:26px;border-radius:4px;
+    background:linear-gradient(180deg,#fdfbf6,#f6f1e6);
+    box-shadow:0 2px 6px rgba(0,0,0,.35), 0 18px 44px -12px rgba(0,0,0,.5);
+    overflow:hidden;
+  }
+  .vpage::before{ /* placeholder texture while a page loads */
+    content:attr(data-ghost);
+    position:absolute;inset:0;display:grid;place-items:center;
+    font-family:var(--mono);font-size:15px;color:rgba(90,78,58,.4);letter-spacing:.14em;
+    background:repeating-linear-gradient(45deg, rgba(143,106,50,.028) 0 12px, transparent 12px 24px);
+  }
+  .vpage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+
+  .vcenter{
+    position:absolute;inset:0;z-index:6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+    text-align:center;padding:24px;color:rgba(245,241,232,.85);
+  }
+  .vcenter[hidden]{display:none}
+  .spinner{width:38px;height:38px;border-radius:50%;border:3px solid rgba(245,241,232,.15);border-top-color:#c89b53;animation:spin .9s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .vcenter .vt{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--paper)}
+  .vcenter .vs{font-size:13.5px;color:rgba(245,241,232,.6);max-width:44ch;line-height:1.6}
+  .vcenter .err-ico{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:rgba(176,86,58,.16);color:#e08a6d;border:1px solid rgba(176,86,58,.35)}
+
+  @media (max-width:640px){
+    .grade-pill{display:none}
+    .vtitle .m{display:none}
+    .vbtn.hidesm{display:none}
+    .vpages{padding:16px 10px 80px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+    html{scroll-behavior:auto}
+    .vpages{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="seal" aria-hidden="true">MS</div>
+    <div>
+      <div class="brand-name">Mohammad Shaban</div>
+      <div class="brand-sub">Grade 10 · Shared textbooks</div>
+    </div>
+  </div>
+  <span class="grade-pill"><i aria-hidden="true"></i>Grade 10</span>
+</header>
+
+<main>
+  <section class="hero">
+    <span class="overline">Shared Textbooks</span>
+    <h1>Grade 10 textbooks, <em>in one place.</em></h1>
+    <p class="lede">
+      Hi — I'm <b>Mohammad Shaban</b>, a Grade 10 student. I enjoy building things for the web,
+      so I put this page together to keep our textbooks organized and easy to open.
+      Click any book to start reading right here in your browser — nothing to install, nothing to sign up for.
+    </p>
+    <div class="hero-chips">
+      <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><b id="statBooks">2</b>&nbsp;textbooks</span>
+      <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Read in your browser</span>
+    </div>
+  </section>
+
+  <section class="shelf" id="textbooks" aria-label="Textbooks">
+    <h2 class="shelf-title">Textbooks</h2>
+    <div class="grid" id="bookGrid"></div>
+  </section>
+</main>
+
+<footer>
+  <span>Made by <b>Mohammad Shaban</b> · Grade 10</span>
+  <span>Happy studying!</span>
+</footer>
+
+<div class="viewer" id="viewer" hidden role="dialog" aria-modal="true" aria-label="Book reader">
+  <div class="vpanel">
+    <div class="vtoolbar">
+      <div class="vtitle">
+        <div class="t" id="vTitle">—</div>
+        <div class="m" id="vMeta">—</div>
+      </div>
+      <div class="vgroup">
+        <button class="vbtn" id="vPrev" aria-label="Previous page" title="Previous page"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+        <span class="vpagenum"><input id="vPageInput" inputmode="numeric" aria-label="Go to page"><span id="vPageTotal">/ —</span></span>
+        <button class="vbtn" id="vNext" aria-label="Next page" title="Next page"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+      <span class="vsep" aria-hidden="true"></span>
+      <div class="vgroup">
+        <button class="vbtn" id="vZoomOut" aria-label="Zoom out" title="Zoom out (−)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M8 11h6"/></svg></button>
+        <span class="vzoom" id="vZoomLabel">100%</span>
+        <button class="vbtn" id="vZoomIn" aria-label="Zoom in" title="Zoom in (+)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M8 11h6M11 8v6"/></svg></button>
+      </div>
+      <span class="vsep hidesm" aria-hidden="true"></span>
+      <div class="vgroup">
+        <button class="vbtn hidesm" id="vExternal" aria-label="Open book in a new tab" title="Open in a new tab"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg></button>
+        <button class="vbtn hidesm" id="vDownload" aria-label="Download book" title="Download"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg></button>
+        <button class="vbtn" id="vClose" aria-label="Close reader" title="Close (Esc)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </div>
+    </div>
+    <div class="vprogress" id="vProgress"><i id="vBar"></i></div>
+    <div class="vpages" id="vPages" tabindex="0" aria-label="Book pages"></div>
+    <div class="vcenter" id="vLoading">
+      <div class="spinner" aria-hidden="true"></div>
+      <div class="vt" id="vLoadingTitle">Opening…</div>
+      <div class="vs">Large books may take a moment on slower connections.</div>
+    </div>
+    <div class="vcenter" id="vError" hidden>
+      <div class="err-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></div>
+      <div class="vt">This book could not be opened</div>
+      <div class="vs" id="vErrorDetail">The link may be broken, or the file may be blocked if it is hosted on another domain.</div>
+    </div>
+  </div>
+</div>
+
+<script src=".\JS-Src\pdf.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* =====================================================================
+     YOUR TEXTBOOKS — paste your links below, then publish.
+     ---------------------------------------------------------------------
+     • url must be a DIRECT link to the PDF file itself:
+         - file in the same folder as this page:
+               url: "mathematics-10.pdf"
+         - any direct HTTPS link:
+               url: "https://your-site.com/files/mathematics-10.pdf"
+     • The easiest setup: put the PDF files next to this HTML file and
+       just write their file names.
+     • IMPORTANT: the page must be hosted (GitHub Pages, Netlify, a school
+       server…) for links to load. Links to files on your own computer
+       (file:///… or C:\…) will NOT work — browsers block them, and other
+       people opening your page don't have your files anyway.
+     • Google Drive / Dropbox "share page" links will NOT open in the
+       reader — use a direct file link.
+     • `note` is the one-line description under each book. Edit freely.
+     • Add more books by copying an entry — the shelf adjusts itself.
+     ===================================================================== */
+
+  var TEXTBOOKS = [
+    {
+      id: "math-10",
+      title: "Mathematics 10",
+      subtitle: "Grade 10 Mathematics",
+      note: "Full course textbook.",
+      color: "#2f6d5e",
+      url: ".\Books\Mathematics10MHC.pdf"          // ← PASTE YOUR MATHEMATICS 10 PDF LINK HERE
+    },
+    {
+      id: "social-10",
+      title: "Social Studies 10",
+      subtitle: "Exploring Globalization",
+      note: "Full course textbook.",
+      color: "#7d3b4b",
+      url: ".\Books\ExploringGlobalization.pdf"          // ← PASTE YOUR SOCIAL STUDIES 10 PDF LINK HERE
+    }
+  ];
+
+  /* ------------------------- tiny DOM helpers ------------------------- */
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $one(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function clamp(v, a, b) { return Math.min(b, Math.max(a, v)); }
+
+  /* ------------------------- element handles -------------------------- */
+  var viewer = $('#viewer'), vPages = $('#vPages');
+  var vTitle = $('#vTitle'), vMeta = $('#vMeta'), vBar = $('#vBar'), vProgress = $('#vProgress');
+  var vPageInput = $('#vPageInput'), vPageTotal = $('#vPageTotal');
+  var vLoading = $('#vLoading'), vLoadingTitle = $('#vLoadingTitle'), vError = $('#vError'), vErrorDetail = $('#vErrorDetail');
+  var vZoomLabel = $('#vZoomLabel');
+  var bookGrid = $('#bookGrid');
+
+  /* --------------------- rendering engine bootstrap -------------------- */
+  var LIB_OK = typeof window.pdfjsLib !== 'undefined';
+  if (LIB_OK) {
+    window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+      '.\JS-Src\pdf.worker.min.js';
+  } else {
+    var warn = document.createElement('section');
+    warn.className = 'lib-warn';
+    warn.innerHTML = '<div class="warn" role="alert"><b>The built-in reader could not load.</b>&nbsp;' +
+      'This usually means the page was opened with no internet connection. ' +
+      'Clicking a book will open it in a new browser tab instead.</div>';
+    document.querySelector('main').insertBefore(warn, document.querySelector('.shelf'));
+  }
+
+  /* ------------------------- viewer state -----------------------------
+     Everything the reader holds in memory lives inside `state`, so it is
+     wiped in one sweep whenever the book changes or the reader closes. */
+  var state = {
+    token: 0,          // bumps on every open/close → stale async work is dropped
+    book: null,
+    doc: null,         // document proxy
+    task: null,        // loading task
+    url: null,         // object URL we own (must be revoked)
+    ownUrl: false,
+    numPages: 0,
+    zoom: 1,
+    contentW: 720,     // on-screen page width at zoom 1
+    wrappers: new Map(),  // pageNo -> placeholder element
+    pages: new Map(),     // pageNo -> { page, canvas, bytes }  (the RAM!)
+    pending: new Set(),   // pages currently rendering
+    io: null           // IntersectionObserver driving the viewport window
+  };
+  var lastFocus = null;
+
+  /* ========================= SHELF RENDERING =========================== */
+  function cardHTML(b) {
+    var hasLink = !!(b.url && String(b.url).length);
+    var open = hasLink
+      ? '<span class="open-btn">Open<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>'
+      : '<span class="soon-tag">Coming soon</span>';
+    var el = '<' + (hasLink ? 'button' : 'article') + ' class="book' + (hasLink ? '' : ' soon') + '"' +
+      (hasLink ? ' data-id="' + esc(b.id) + '" aria-label="Open ' + esc(b.title) + '"' : '') + '>' +
+      '<span class="cover" style="--c:' + esc(b.color || '#8f6a32') + '">' +
+        '<span class="cover-tag">Grade 10</span>' +
+        '<span><span class="cover-title">' + esc(b.title) + '</span>' +
+        (b.subtitle ? '<span class="cover-sub">' + esc(b.subtitle) + '</span>' : '') + '</span>' +
+        '<span class="cover-meta"><span>' + (hasLink
+          ? '<span class="dot"></span>PDF' + (b.pages ? ' · ' + esc(b.pages) + ' pages' : '')
+          : 'Link coming soon') + '</span></span>' +
+      '</span>' +
+      '<span class="book-body">' +
+        '<span class="book-note">' + esc(b.note || '') + '</span>' + open +
+      '</span>' +
+    '</' + (hasLink ? 'button' : 'article') + '>';
+    return el;
+  }
+
+  function renderBooks() {
+    $('#statBooks').textContent = String(TEXTBOOKS.length);
+    if (!TEXTBOOKS.length) {
+      bookGrid.innerHTML = '<div class="no-results">Books are being added — check back soon!</div>';
+      return;
+    }
+    bookGrid.innerHTML = TEXTBOOKS.map(cardHTML).join('');
+    $one('button.book', bookGrid).forEach(function (el) {
+      el.addEventListener('click', function () {
+        var id = el.getAttribute('data-id');
+        for (var i = 0; i < TEXTBOOKS.length; i++) {
+          if (TEXTBOOKS[i].id === id) { openBook(TEXTBOOKS[i]); break; }
+        }
+      });
+    });
+  }
+
+  /* ================ MEMORY CORE: free / unload / destroy =============== */
+  function freeEntry(e) {
+    if (!e) return;
+    try { e.canvas.width = 0; e.canvas.height = 0; } catch (err) { }
+    if (e.canvas.parentNode) e.canvas.parentNode.removeChild(e.canvas);
+    try { if (e.page && e.page.cleanup) e.page.cleanup(); } catch (err) { }
+  }
+
+  function freePage(n) {
+    var e = state.pages.get(n);
+    if (!e) return;
+    freeEntry(e);
+    state.pages.delete(n);
+  }
+
+  function unloadAllPages() {
+    state.pages.forEach(freeEntry);
+    state.pages.clear();
+    state.pending.clear();
+  }
+
+  /* Full release of the current document — called before every new open
+     and when the reader closes: the previously viewed book leaves memory
+     completely, and only the book being read is ever held.            */
+  function destroyDocument() {
+    if (state.io) { state.io.disconnect(); state.io = null; }
+    unloadAllPages();
+    vPages.innerHTML = '';
+    state.wrappers.clear();
+    if (state.task) { try { state.task.destroy(); } catch (err) { } state.task = null; }
+    if (state.doc) { try { state.doc.destroy(); } catch (err) { } state.doc = null; }
+    if (state.ownUrl && state.url) { try { URL.revokeObjectURL(state.url); } catch (err) { } }
+    state.ownUrl = false; state.url = null; state.book = null; state.numPages = 0;
+  }
+
+  /* ======================= PAGE RENDERING ============================= */
+  function pageWidthPx() { return Math.min(860, Math.max(240, state.contentW * state.zoom)); }
+
+  function applyWidths() {
+    var w = pageWidthPx().toFixed(0) + 'px';
+    state.wrappers.forEach(function (el) { el.style.setProperty('--pgw', w); });
+  }
+
+  async function renderPage(n) {
+    var t = state.token;
+    if (!state.doc || state.pages.has(n) || state.pending.has(n)) return;
+    var holder = state.wrappers.get(n);
+    if (!holder) return;
+    state.pending.add(n);
+    try {
+      var page = await state.doc.getPage(n);
+      if (t !== state.token) { try { page.cleanup(); } catch (e) { } return; }
+
+      var base = page.getViewport({ scale: 1 });
+      var ar = base.width / base.height;
+      if (Math.abs(parseFloat(holder.style.getPropertyValue('--ar') || 0) - ar) > 0.004) {
+        holder.style.setProperty('--ar', String(ar));
+      }
+
+      var cssW = pageWidthPx();
+      var dpr = clamp(window.devicePixelRatio || 1, 1, 2);
+      var vp = page.getViewport({ scale: cssW * dpr / base.width });
+      var canvas = document.createElement('canvas');
+      canvas.width = Math.max(1, Math.floor(vp.width));
+      canvas.height = Math.max(1, Math.floor(vp.height));
+
+      await page.render({
+        canvasContext: canvas.getContext('2d', { alpha: false }),
+        viewport: vp
+      }).promise;
+
+      if (t !== state.token) {           // book changed mid-render → discard
+        try { canvas.width = 0; canvas.height = 0; } catch (e) { }
+        try { page.cleanup(); } catch (e) { }
+        return;
+      }
+      holder = state.wrappers.get(n);
+      if (!holder) { try { canvas.width = 0; canvas.height = 0; } catch (e) { } return; }
+
+      var old = state.pages.get(n);
+      if (old) freeEntry(old);
+      holder.appendChild(canvas);
+      state.pages.set(n, { page: page, canvas: canvas, bytes: canvas.width * canvas.height * 4 });
+    } catch (err) {
+      if (t === state.token) console.warn('Page ' + n + ' failed to render:', err);
+    } finally {
+      state.pending.delete(n);
+    }
+  }
+
+  /* Render whatever sits inside (or near) the visible viewport. Used
+     right after a zoom/resize, when the observer has no new events.  */
+  function renderVisible() {
+    if (!state.doc) return;
+    var vr = vPages.getBoundingClientRect();
+    var m = vPages.clientHeight * 1.2;
+    state.wrappers.forEach(function (el, n) {
+      var r = el.getBoundingClientRect();
+      if (r.top < vr.bottom + m && r.bottom > vr.top - m) renderPage(n);
+    });
+  }
+
+  function onIntersect(entries) {
+    entries.forEach(function (en) {
+      var n = parseInt(en.target.getAttribute('data-page'), 10);
+      if (en.isIntersecting) renderPage(n);
+      else freePage(n);               // ← scrolled away: memory released
+    });
+  }
+
+  /* ======================= READER UI PLUMBING ========================= */
+  function setProgress(p) {
+    if (p == null) { vProgress.classList.remove('busy'); vBar.style.width = '0'; return; }
+    vProgress.classList.add('busy');
+    vBar.style.width = (clamp(p, 0.02, 1) * 100).toFixed(1) + '%';
+  }
+
+  function currentPage() {
+    var anchor = vPages.scrollTop + vPages.clientHeight * 0.3, cur = 1;
+    state.wrappers.forEach(function (el, n) { if (el.offsetTop <= anchor) cur = n; });
+    return cur;
+  }
+
+  function syncPageIndicator() {
+    vPageInput.value = String(currentPage());
+    vPageInput.placeholder = vPageInput.value;
+  }
+
+  function goToPage(n, instant) {
+    n = clamp(n, 1, state.numPages || 1);
+    var el = state.wrappers.get(n);
+    if (el) vPages.scrollTo({ top: Math.max(0, el.offsetTop - 14), behavior: instant ? 'auto' : 'smooth' });
+    syncPageIndicator();
+  }
+
+  function setZoom(z) {
+    state.zoom = clamp(z, 0.5, 3);
+    vZoomLabel.textContent = Math.round(state.zoom * 100) + '%';
+    applyWidths();
+    unloadAllPages();      // re-render only what is visible at the new size
+    renderVisible();
+  }
+
+  function openOverlay() {
+    lastFocus = document.activeElement;
+    viewer.hidden = false;
+    requestAnimationFrame(function () { viewer.classList.add('on'); });
+    document.body.classList.add('locked');
+    $('#vClose').focus();
+  }
+
+  function showLoading(book) {
+    vError.hidden = true;
+    vLoading.hidden = false;
+    vLoadingTitle.textContent = 'Opening “' + book.title + '”…';
+    setProgress(0.04);
+    vTitle.textContent = book.title;
+    vMeta.textContent = 'Grade 10 · PDF';
+    vPageTotal.textContent = '/ —';
+    vPageInput.value = '';
+  }
+
+  function showError(err) {
+    vLoading.hidden = true;
+    setProgress(null);
+    vError.hidden = false;
+    vErrorDetail.textContent = err && err.name === 'MissingPDFException'
+      ? 'The file was not found at its link. Check the link and try again.'
+      : (err && err.message ? err.message : 'The link may be broken, or the file may be blocked if it is hosted on another domain.');
+  }
+
+  /* --------------------- open a book (the flow) ----------------------- */
+  async function openBook(book) {
+    if (!book || !book.url) return;
+    var t = ++state.token;
+    destroyDocument();               // ← previous book fully leaves memory here
+
+    if (!LIB_OK) { openExternal(book); return; }   // graceful fallback
+
+    openOverlay();
+    showLoading(book);
+    state.book = book;
+
+    try {
+      state.task = window.pdfjsLib.getDocument({ url: book.url });
+      state.task.onProgress = function (p) {
+        if (t === state.token && p && p.total) setProgress(p.loaded / p.total);
+      };
+      var doc = await state.task.promise;
+      if (t !== state.token) { try { doc.destroy(); } catch (e) { } return; }
+      state.doc = doc;
+      state.numPages = doc.numPages;
+
+      // Common page shape (from page 1) drives the placeholder layout.
+      var p1 = await doc.getPage(1);
+      if (t !== state.token) return;
+      var v1 = p1.getViewport({ scale: 1 });
+      try { p1.cleanup(); } catch (e) { }
+
+      state.contentW = Math.min(860, Math.max(240, vPages.clientWidth - 48));
+      var frag = document.createDocumentFragment();
+      for (var n = 1; n <= state.numPages; n++) {
+        var el = document.createElement('div');
+        el.className = 'vpage';
+        el.setAttribute('data-page', String(n));
+        el.setAttribute('data-ghost', 'page ' + n);
+        el.style.setProperty('--ar', String(v1.width / v1.height));
+        el.style.setProperty('--pgw', pageWidthPx().toFixed(0) + 'px');
+        frag.appendChild(el);
+        state.wrappers.set(n, el);
+      }
+      vPages.appendChild(frag);
+
+      state.io = new IntersectionObserver(onIntersect, {
+        root: vPages, rootMargin: '250% 0px', threshold: 0
+      });
+      state.wrappers.forEach(function (el) { state.io.observe(el); });
+
+      // Reader ready
+      vMeta.textContent = 'Grade 10 · ' + state.numPages +
+        (state.numPages === 1 ? ' page' : ' pages') + ' · PDF';
+      vPageTotal.textContent = '/ ' + state.numPages;
+      vLoading.hidden = true;
+      setProgress(null);
+      vZoomLabel.textContent = '100%';
+      vPages.scrollTop = 0;
+      syncPageIndicator();
+      renderVisible();
+    } catch (err) {
+      if (t === state.token) showError(err);
+      console.warn('Open failed:', err);
+    }
+  }
+
+  function closeViewer() {
+    ++state.token;
+    destroyDocument();               // ← everything released, clean slate
+    viewer.classList.remove('on');
+    document.body.classList.remove('locked');
+    setTimeout(function () { viewer.hidden = true; }, 200);
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  /* ------------------------- share helpers ---------------------------- */
+  function openExternal(book) {
+    if (book.url) window.open(book.url, '_blank', 'noopener');
+  }
+  function downloadBook(book) {
+    if (!book.url) return;
+    var a = document.createElement('a');
+    a.href = book.url;
+    a.download = (book.title || 'textbook').replace(/[^\w \-.]+/g, '').trim() + '.pdf';
+    a.target = '_blank'; a.rel = 'noopener';
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+
+  /* --------------------------- events --------------------------------- */
+  $('#vClose').addEventListener('click', closeViewer);
+  viewer.addEventListener('click', function (e) { if (e.target === viewer) closeViewer(); });
+  $('#vPrev').addEventListener('click', function () { goToPage(currentPage() - 1); });
+  $('#vNext').addEventListener('click', function () { goToPage(currentPage() + 1); });
+  $('#vZoomIn').addEventListener('click', function () { setZoom(state.zoom * 1.2); });
+  $('#vZoomOut').addEventListener('click', function () { setZoom(state.zoom / 1.2); });
+  $('#vExternal').addEventListener('click', function () { if (state.book) openExternal(state.book); });
+  $('#vDownload').addEventListener('click', function () { if (state.book) downloadBook(state.book); });
+  vPageInput.addEventListener('change', function () {
+    var n = parseInt(vPageInput.value, 10);
+    if (!isNaN(n)) goToPage(n);
+    syncPageIndicator();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (viewer.hidden) return;
+    if (e.key === 'Escape') { closeViewer(); }
+    else if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); goToPage(currentPage() + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); goToPage(currentPage() - 1); }
+    else if (e.key === '+' || e.key === '=') { setZoom(state.zoom * 1.2); }
+    else if (e.key === '-') { setZoom(state.zoom / 1.2); }
+    else if (e.key === '0') { setZoom(1); }
+    else if (e.key === 'Home') { e.preventDefault(); goToPage(1); }
+    else if (e.key === 'End') { e.preventDefault(); goToPage(state.numPages); }
+  });
+
+  var rafPending = false;
+  vPages.addEventListener('scroll', function () {
+    if (rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(function () { rafPending = false; syncPageIndicator(); });
+  }, { passive: true });
+
+  var rsz;
+  window.addEventListener('resize', function () {
+    if (viewer.hidden || !state.doc) return;
+    clearTimeout(rsz);
+    rsz = setTimeout(function () {
+      state.contentW = Math.min(860, Math.max(240, vPages.clientWidth - 48));
+      applyWidths();
+      unloadAllPages();
+      renderVisible();
+    }, 220);
+  });
+
+  /* ------------------------- first paint ------------------------------ */
+  renderBooks();
+
+  /* Quiet hook for checking the reader's memory behaviour. */
+  window.__libraryDebug = function () {
+    return {
+      libLoaded: LIB_OK,
+      books: TEXTBOOKS.length,
+      open: !viewer.hidden,
+      docInRAM: !!state.doc,
+      pagesInRAM: state.pages.size,
+      pendingRenders: state.pending.size,
+      bytes: (function () { var b = 0; state.pages.forEach(function (e) { b += e.bytes; }); return b; })()
+    };
+  };
+})();
+</script>
+</body>
+</html>
