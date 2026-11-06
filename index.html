@@ -343,7 +343,7 @@
   </div>
 </div>
 
-<script src=".\src\pdf.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="\src\pdf.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 (function () {
   'use strict';
@@ -409,7 +409,7 @@
   var LIB_OK = typeof window.pdfjsLib !== 'undefined';
   if (LIB_OK) {
     window.pdfjsLib.GlobalWorkerOptions.workerSrc =
-      '.\src\pdf.worker.min.js';
+      '\src\pdf.worker.min.js';
   } else {
     var warn = document.createElement('section');
     warn.className = 'lib-warn';
